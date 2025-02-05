@@ -7,7 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         .carousel-container {
-            border: 5px solid white;
+            border: 10px solid white;
             border-radius: 8px;
             overflow: hidden;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
@@ -16,21 +16,17 @@
         .control-button {
             background: #ffffff;
             border-radius: 50%;
-            width: 40px;
-            height: 40px;
+            width: 60px;
+            height: 60px;
             display: flex;
             align-items: center;
             justify-content: center;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-            transition: transform 0.2s ease;
         }
 
-        .control-button:hover {
-            transform: scale(1.1);
-        }
     </style>
 </head>
-<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+<body class="bg-gray-200 flex items-center justify-center min-h-screen">
     <div class="w-full max-w-3xl mx-auto p-4">
         <div class="relative bg-white shadow-lg rounded-lg overflow-hidden carousel-container">
             <div class="w-full h-1 bg-gray-300 absolute top-0 left-0 z-50">
@@ -39,26 +35,26 @@
             <div id="carousel" class="relative flex items-center justify-center w-full h-[450px] bg-black overflow-hidden">
                 <div class="carousel-item absolute w-full h-full flex items-center justify-center opacity-100 transition-opacity duration-1000 active">
                     <img src="./images/1.jpg" alt="Slide 1" class="w-full h-full object-contain">
-                    <span class="absolute top-2 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-sm font-bold px-3 py-1 rounded-full">1</span>
+                    <span class="absolute top-2 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-sm font-bold px-3 py-1 mt-2 rounded-full">Image 1</span>
                 </div>
                 <div class="carousel-item absolute w-full h-full flex items-center justify-center opacity-0 transition-opacity duration-1000">
                     <img src="./images/2.jpg" alt="Slide 2" class="w-full h-full object-contain">
-                    <span class="absolute top-2 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-sm font-bold px-3 py-1 rounded-full">2</span>
+                    <span class="absolute top-2 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-sm font-bold px-3 py-1 mt-2 rounded-full">Image 2</span>
                 </div>
                 <div class="carousel-item absolute w-full h-full flex items-center justify-center opacity-0 transition-opacity duration-1000">
                     <img src="./images/3.jpg" alt="Slide 3" class="max-h-full w-auto object-contain">
-                    <span class="absolute top-2 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-sm font-bold px-3 py-1 rounded-full">3</span>
+                    <span class="absolute top-2 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-sm font-bold px-3 py-1 mt-2 rounded-full">Image 3</span>
                 </div>
                 <div class="carousel-item absolute w-full h-full flex items-center justify-center opacity-0 transition-opacity duration-1000">
                     <img src="./images/4.jpg" alt="Slide 4" class="w-full h-full object-contain">
-                    <span class="absolute top-2 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-sm font-bold px-3 py-1 rounded-full">4</span>
+                    <span class="absolute top-2 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-sm font-bold px-3 py-1 mt-2 rounded-full">Image 4</span>
                 </div>
             </div>
-            <button id="prev" class="absolute left-0 top-1/2 -translate-y-1/2 control-button">&#9664;</button>
-            <button id="next" class="absolute right-0 top-1/2 -translate-y-1/2 control-button">&#9654;</button>
+            <button id="prev" class="absolute left-0 ml-[-30px] top-1/2 -translate-y-1/2 control-button"><span class="ml-6">&#9664;</span></button>
+            <button id="next" class="absolute right-0 mr-[-30px] top-1/2 -translate-y-1/2 control-button"><span class="mr-6">&#9654;</span></button>
         </div>
-        <div id="viewCounts" class="mt-4 text-center text-gray-700 bg-gray-200 p-3 rounded-lg">
-            <p class="font-bold">Slide Counts:</p>
+        <div id="viewCounts" class="mt-4 text-center text-gray-700 bg-white p-3 rounded-lg">
+            <p class="font-bold underline">Slide Counts:</p>
             <ul>
                 <li>Image 1: <span class="font-bold" id="count1">0</span></li>
                 <li>Image 2: <span class="font-bold" id="count2">0</span></li>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zipline Assessment</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <div class="w-full max-w-3xl mx-auto p-4">
+        <div class="relative bg-white shadow-lg rounded-lg overflow-hidden">
+            <div class="w-full h-1 bg-gray-300 absolute top-0 left-0 z-50">
+                <div id="progressBar" class="h-full bg-green-500 transition-all duration-[3000ms] w-0"></div>
+            </div>
+            <div id="carousel" class="relative flex items-center justify-center w-full h-[450px] bg-black overflow-hidden">
+                <div class="carousel-item absolute w-full h-full flex items-center justify-center opacity-100 transition-opacity duration-1000 active">
+                    <img src="./images/1.jpg" alt="Slide 1" class="w-full h-full object-contain">
+                    <span class="absolute top-2 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-sm font-bold px-3 py-1 mt-2 rounded-full">Image 1</span>
+                </div>
+                <div class="carousel-item absolute w-full h-full flex items-center justify-center opacity-0 transition-opacity duration-1000">
+                    <img src="./images/2.jpg" alt="Slide 2" class="w-full h-full object-contain">
+                    <span class="absolute top-2 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-sm font-bold px-3 py-1 mt-2 rounded-full">Image 2</span>
+                </div>
+                <div class="carousel-item absolute w-full h-full flex items-center justify-center opacity-0 transition-opacity duration-1000">
+                    <img src="./images/3.jpg" alt="Slide 3" class="max-h-full w-auto object-contain">
+                    <span class="absolute top-2 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-sm font-bold px-3 py-1 mt-2 rounded-full">Image 3</span>
+                </div>
+                <div class="carousel-item absolute w-full h-full flex items-center justify-center opacity-0 transition-opacity duration-1000">
+                    <img src="./images/4.jpg" alt="Slide 4" class="w-full h-full object-contain">
+                    <span class="absolute top-2 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-sm font-bold px-3 py-1 mt-2 rounded-full">Image 4</span>
+                </div>
+            </div>
+            <button id="prev" class="absolute left-2 top-1/2 -translate-y-1/2 bg-gray-800 text-white px-3 py-1 rounded-full z-50">&#9664;</button>
+            <button id="next" class="absolute right-2 top-1/2 -translate-y-1/2 bg-gray-800 text-white px-3 py-1 rounded-full z-50">&#9654;</button>
+        </div>
+        <div id="viewCounts" class="mt-4 text-center text-gray-700 bg-gray-200 p-3 rounded-lg">
+            <p class="font-bold">Slide Counts:</p>
+            <ul>
+                <li>Image 1: <span class="font-bold" id="count1">0</span></li>
+                <li>Image 2: <span class="font-bold" id="count2">0</span></li>
+                <li>Image 3: <span class="font-bold" id="count3">0</span></li>
+                <li>Image 4: <span class="font-bold" id="count4">0</span></li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        const carouselItems = document.querySelectorAll('.carousel-item');
+        const progressBar = document.getElementById('progressBar');
+        const viewCounts = [0, 0, 0, 0];
+        let currentIndex = 0;
+        let autoSlideInterval;
+
+        const updateViewCounts = () => {
+            document.getElementById(`count${currentIndex + 1}`).innerText = ++viewCounts[currentIndex];
+        };
+
+        const showSlide = (index) => {
+            carouselItems[currentIndex].classList.remove('active', 'opacity-100');
+            carouselItems[currentIndex].classList.add('opacity-0');
+            carouselItems[index].classList.remove('opacity-0');
+            carouselItems[index].classList.add('active', 'opacity-100');
+            currentIndex = index;
+            updateViewCounts();
+            resetProgressBar();
+        };
+
+        const nextSlide = () => showSlide((currentIndex + 1) % carouselItems.length);
+        const prevSlide = () => showSlide((currentIndex - 1 + carouselItems.length) % carouselItems.length);
+
+        document.getElementById('prev').addEventListener('click', () => { prevSlide(); restartAutoSlide(); });
+        document.getElementById('next').addEventListener('click', () => { nextSlide(); restartAutoSlide(); });
+
+        const resetProgressBar = () => {
+            progressBar.style.width = '0%';
+            setTimeout(() => {
+                progressBar.style.transition = 'none';
+                progressBar.style.width = '0%';
+                progressBar.offsetHeight;
+                progressBar.style.transition = 'width 3s linear';
+                progressBar.style.width = '100%';
+            }, 10);
+        };
+
+        const startAutoSlide = () => { autoSlideInterval = setInterval(nextSlide, 3000); resetProgressBar(); };
+        const restartAutoSlide = () => { clearInterval(autoSlideInterval); startAutoSlide(); };
+
+        updateViewCounts();
+        startAutoSlide();
+    </script>
+</body>
+</html>
